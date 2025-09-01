@@ -7,9 +7,9 @@
 #   brew bundle cleanup --file=Brewfile --force
 
 # Taps
-tap "homebrew/bundle"
+tap "homebrew/bundle"			## Adeel: Does this exist?
 tap "homebrew/cask"
-tap "homebrew/cask-fonts"
+tap "homebrew/cask-fonts" 		## Adeel: Do we need explicit fonts called out at the botton if we have this?
 tap "homebrew/core"
 tap "homebrew/services"
 
@@ -28,7 +28,6 @@ brew "gitleaks"             # Secrets detection
 brew "go"
 brew "node"                 # Keep alongside nvm for system default
 brew "python@3.13"
-brew "python@3.12"
 brew "lua"
 brew "luajit"
 
@@ -41,60 +40,49 @@ brew "coreutils"
 brew "starship"             # Cross-shell prompt
 brew "zsh-syntax-highlighting"
 brew "zoxide"               # Smarter cd command
-brew "eza"                  # Modern ls replacement
-brew "bat"                  # Cat with syntax highlighting
+brew "bat"                  # Cat with syntax highlighting (kept for showing syntax-highlighted snippets)
 brew "neovim"
 
-# Cloud & Infrastructure
-brew "awscli"
-brew "terraform"
-brew "terraform-docs"
-brew "sentinel"
 
-# Utilities
-brew "the_silver_searcher"  # ag - code search
-brew "ripgrep"              # rg - faster grep
+# # Cloud & Infrastructure
+# brew "awscli"
+# brew "terraform"
+# brew "terraform-docs"
+# brew "sentinel"
+
+
+# Search & Code Utilities
+brew "the_silver_searcher"  # ag - keeping during ripgrep transition (remove in 6 months)
+brew "ripgrep"              # rg - primary code search tool
 brew "fd"                   # Faster find
-brew "tree-sitter"
-brew "diff-so-fancy"        # Better git diffs
 brew "pre-commit"
-brew "pipx"
-brew "uv"                   # Fast Python package manager
+
+# Python Package Management
+brew "pipx"                 # Install Python CLI tools in isolated environments
+brew "uv"                   # Fast Python package manager (10-100x faster than pip)
 
 # Networking & HTTP
-brew "curl"
-brew "wget"                 # NEW - Alternative to curl
-brew "httpie"               # NEW - Modern HTTP client
+brew "curl"                 # Universal HTTP client
+brew "httpie"               # Better for API testing with authentication
 
 # System Monitoring
-brew "htop"                 # NEW - Process viewer
-brew "procs"                # NEW - Modern ps
-brew "dust"                 # NEW - Modern du
+# Note: Visual monitoring tools removed - using Grafana/observability instead
 
-# Terminal Multiplexing
-brew "tmux"                 # NEW - Terminal multiplexer
 
 # Media Processing
-brew "ffmpeg"               # NEW - Audio/video processing
-brew "imagemagick"          # NEW - Image manipulation
+# brew "ffmpeg"               # NEW - Audio/video processing
+# brew "imagemagick"          # NEW - Image manipulation
 
-# Developer Productivity
-brew "fzf"                  # NEW - Fuzzy finder
-brew "watch"                # NEW - Execute periodically
-brew "ncdu"                 # NEW - Disk usage
-brew "tldr"                 # NEW - Simplified man pages
-brew "autojump"             # NEW - Smart navigation
-brew "hyperfine"            # NEW - Benchmarking
-brew "tokei"                # NEW - Code statistics
+# Data Processing & Productivity
+brew "fzf"                  # Fuzzy finder for interactive selection
+brew "watch"                # Execute periodically (kept for simple monitoring)
+brew "tldr"                 # Simplified man pages
 brew "jq"                   # JSON processor
+brew "yq"                   # YAML processor (essential for Docker configs)
 
 # Security
 brew "openssl@3"
 brew "ca-certificates"
-
-# Database
-brew "redis"
-brew "sqlite"
 
 # Compression
 brew "p7zip"
@@ -104,9 +92,6 @@ brew "xz"
 brew "zstd"
 
 # Other Development Tools
-brew "tailscale"
-brew "doormat-cli"
-brew "gemini-cli"
 brew "brew-file"
 brew "go-task"
 
@@ -121,7 +106,6 @@ cask "1password"
 cask "1password-cli"
 
 # Development
-cask "visual-studio-code"
 cask "ghostty"              # Terminal
 cask "orbstack"             # Docker/Kubernetes
 cask "lm-studio"            # LLM management
@@ -134,7 +118,6 @@ cask "adobe-acrobat-reader"
 cask "reader"               # RSS reader
 cask "shortcat"             # Keyboard navigation
 cask "rar"                  # Archive utility
-cask "box-drive"            # Cloud storage
 
 # Fonts
 cask "font-fira-code-nerd-font"
@@ -145,13 +128,10 @@ cask "font-noto-sans-arabic"
 # Java
 cask "zulu"                 # OpenJDK distribution
 
-# Blockchain
-cask "5ire"
-
 # === TO MIGRATE (New installations) ===
 
 # Browsers
-cask "google-chrome"
+# cask "google-chrome"
 cask "microsoft-edge"
 
 # Communication & Collaboration
@@ -161,23 +141,13 @@ cask "microsoft-teams"
 
 # Productivity
 cask "alfred"               # Launcher (currently Alfred 5.app)
-cask "raycast"              # Command palette
 cask "claude"               # AI assistant
+cask "claude-code"
 cask "timing"               # Time tracking
 cask "todoist"              # Task management
 
-# Microsoft Office
-cask "microsoft-outlook"
-cask "onedrive"
-
-# Development
-cask "docker"               # Docker Desktop
-
-# Cloud Storage
-cask "google-drive"
-
 # Media Production
-cask "ecamm-live"           # Live streaming
+# cask "ecamm-live"           # Live streaming
 
 # Hardware Support
 cask "displaylink"          # Display adapters
@@ -186,7 +156,7 @@ cask "elgato-camera-hub"
 cask "rode-central"         # Audio equipment
 
 # Security & MDM
-cask "okta-verify"          # 2FA
+# cask "okta-verify"          # 2FA
 cask "nudge"                # macOS updates
 
 # Utilities
@@ -223,9 +193,11 @@ cask "the-unarchiver"       # Archive extraction
 #    - Security tools (Falcon, Code42)
 #    - Google Workspace PWAs (Docs, Sheets, Slides)
 #
-# 3. Version managers:
-#    - nvm is installed separately (not via Homebrew)
-#    - Consider pyenv if Python version management needed
+# 3. Python Development:
+#    - Use 'uv' for virtual environments and package management
+#    - uv venv .venv && source .venv/bin/activate
+#    - uv pip install -r requirements.txt (10-100x faster than pip)
+#    - No pyenv needed since standardized on Python 3.13
 #
 # 4. To update everything:
 #    brew update && brew upgrade && brew cleanup
@@ -235,3 +207,8 @@ cask "the-unarchiver"       # Archive extraction
 #
 # 6. To remove items not in Brewfile:
 #    brew bundle cleanup --file=Brewfile --force
+#
+# 7. Tool Migration Timeline:
+#    - Keep the_silver_searcher for 6 months during ripgrep transition
+#    - Observability tools (Grafana/Langfuse) will gradually replace CLI monitoring
+#    - Final target: ~25 essential tools after full observability integration
