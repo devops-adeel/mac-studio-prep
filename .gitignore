@@ -1,0 +1,33 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# Editor
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Local Claude settings
+.claude/
+
+# Homebrew
+Brewfile.lock.json
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+
+# Build artifacts (if any future scripts generate them)
+dist/
+build/
+*.egg-info/
+__pycache__/
+*.pyc
