@@ -7,11 +7,6 @@
 #   brew bundle cleanup --file=Brewfile --force
 
 # Taps
-tap "homebrew/bundle"			## Adeel: Does this exist?
-tap "homebrew/cask"
-tap "homebrew/cask-fonts" 		## Adeel: Do we need explicit fonts called out at the botton if we have this?
-tap "homebrew/core"
-tap "homebrew/services"
 
 # =============================================================================
 # FORMULAE - Command Line Tools
@@ -116,8 +111,10 @@ cask "obs"                  # Streaming/recording
 # Utilities
 cask "adobe-acrobat-reader"
 cask "reader"               # RSS reader
-cask "shortcat"             # Keyboard navigation
+# cask "shortcat"           # Keyboard navigation
 cask "rar"                  # Archive utility
+cask "mouseless"	    # Keyboard navigation
+cask "keymapp"		    # ZSA voyager keyboard configurator.
 
 # Fonts
 cask "font-fira-code-nerd-font"
